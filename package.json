@@ -1,0 +1,48 @@
+{
+  "scripts": {
+    "prepare": "husky install",
+    "initrepo": "rm -rf CHANGELOG.md && sed -i -e \"/\\\"version\\\":/Id\" package.json && npm init -y",
+    "release:first": "standard-version --first-release --no-verify",
+    "release:patch": "standard-version --release-as patch --no-verify",
+    "release:minor": "standard-version --release-as minor --no-verify",
+    "release:major": "standard-version --release-as major --no-verify"
+  },
+  "devDependencies": {
+    "editorconfig-checker": "^4.0.2",
+    "git-cz": "^4.9.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "markdownlint-cli2": "^0.5.1",
+    "standard-version": "^9.5.0"
+  },
+  "lint-staged": {
+    "*.*": [
+      "editorconfig-checker",
+      "bash -c \"cargo deny check -- && :\""
+    ],
+    "*.rs": [
+      "bash -c \"cargo check && :\"",
+      "cargo fmt --",
+      "bash -c \"cargo clippy -- --deny warnings && :\"",
+      "bash -c \"cargo test -- && :\""
+    ]
+  },
+  "name": "rust-project-template",
+  "description": "<!-- editorconfig-checker-disable --> ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Torimune29/rust-project-template/CI?label=CI) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Torimune29/rust-project-template/CD?label=CD) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/397fa9ad1fd64e089947b96118b1a87c)](https://www.codacy.com/gh/Torimune29/rust-project-template/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Torimune29/rust-project-template&amp;utm_campaign=Badge_Grade) <!-- editorconfig-checker-enable -->",
+  "version": "0.0.1",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Torimune29/rust-project-template.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Torimune29/rust-project-template/issues"
+  },
+  "homepage": "https://github.com/Torimune29/rust-project-template#readme"
+}

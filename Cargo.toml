@@ -1,0 +1,22 @@
+[package]
+name = "rust-project-template"
+version = "0.0.2"
+edition = "2021"
+authors = [ "Torimune29 <71534350+Torimune29@users.noreply.github.com>" ]
+license = "MIT"
+repository = "https://github.com/Torimune29/rust-project-template"
+description = "Rust Project Template"
+
+[profile.dev]
+opt-level = 0
+
+[profile.release]
+opt-level = 3
+panic = 'abort'
+
+
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+clap = { version = "4.0.11", features = ["derive"] }

@@ -1,11 +1,11 @@
 [package]
-name = "rust-project-template"
-version = "0.0.2"
+name = "cli-tools"
+version = "0.0.1"
 edition = "2021"
 authors = [ "Torimune29 <71534350+Torimune29@users.noreply.github.com>" ]
 license = "MIT"
-repository = "https://github.com/Torimune29/rust-project-template"
-description = "Rust Project Template"
+repository = "https://github.com/Torimune29/cli-tools"
+description = "cli tools"
 
 [profile.dev]
 opt-level = 0

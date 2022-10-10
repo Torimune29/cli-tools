@@ -1,9 +1,9 @@
-# rust-project-template
+# cli-tools
 
 <!-- editorconfig-checker-disable -->
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Torimune29/rust-project-template/CI?label=CI)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Torimune29/rust-project-template/CD?label=CD)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/397fa9ad1fd64e089947b96118b1a87c)](https://www.codacy.com/gh/Torimune29/rust-project-template/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Torimune29/rust-project-template&amp;utm_campaign=Badge_Grade)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Torimune29/cli-tools/CI?label=CI)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Torimune29/cli-tools/CD?label=CD)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/397fa9ad1fd64e089947b96118b1a87c)](https://www.codacy.com/gh/Torimune29/cli-tools/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Torimune29/cli-tools&amp;utm_campaign=Badge_Grade)
 <!-- editorconfig-checker-enable -->
 
 Rust Project Template

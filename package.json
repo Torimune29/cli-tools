@@ -29,7 +29,6 @@
   },
   "name": "cli-tools",
   "description": "<!-- editorconfig-checker-disable --> ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Torimune29/cli-tools/CI?label=CI) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Torimune29/cli-tools/CD?label=CD) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/397fa9ad1fd64e089947b96118b1a87c)](https://www.codacy.com/gh/Torimune29/cli-tools/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Torimune29/cli-tools&amp;utm_campaign=Badge_Grade) <!-- editorconfig-checker-enable -->",
-  "version": "0.0.1",
   "main": "index.js",
   "directories": {
     "doc": "docs"
@@ -44,5 +43,6 @@
   "bugs": {
     "url": "https://github.com/Torimune29/cli-tools/issues"
   },
-  "homepage": "https://github.com/Torimune29/cli-tools#readme"
+  "homepage": "https://github.com/Torimune29/cli-tools#readme",
+  "version": "1.0.0"
 }

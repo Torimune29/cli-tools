@@ -1,30 +1,27 @@
 use clap::{Parser, Subcommand};
-use percent_encoding::{percent_encode, percent_decode, NON_ALPHANUMERIC};
+use percent_encoding::{percent_decode, percent_encode, NON_ALPHANUMERIC};
 use std::io::Read;
-
 
 #[derive(Debug, Clone, PartialEq, clap::ValueEnum)]
 enum Kind {
     Shell,
     Json,
-    HTTP,
+    Http,
 }
 
-
-fn get_message (s: &Option<String>) -> String {
-    let mut buffer:String = String::new();
+fn get_message(s: &Option<String>) -> String {
+    let mut buffer: String = String::new();
     match s {
-        Some(message)=> {
+        Some(message) => {
             buffer = message.clone();
         }
         None => {
             std::io::stdin().read_to_string(&mut buffer).unwrap();
         }
     }
-    return buffer;
+    buffer
 }
 
-// Parserを継承した構造体はArgの代わりに使用することが可能。
 #[derive(Debug, Parser)]
 #[clap(
     name = env!("CARGO_PKG_NAME"),
@@ -35,19 +32,22 @@ fn get_message (s: &Option<String>) -> String {
 struct AppArg {
     #[clap(subcommand)]
     command: Commands,
-
-    #[clap(value_enum, short = 'k', long = "kind")]
-    kind: Kind,
 }
 
 #[derive(Debug, Subcommand)]
 
 enum Commands {
-    Escape {
+    StrEscape {
+        #[clap(value_enum, short = 'k', long = "kind")]
+        kind: Kind,
+
         #[clap(help = "Input Message. If not, read STDIN")]
         message: Option<String>,
-    } ,
-    Unescape {
+    },
+    StrUnescape {
+        #[clap(value_enum, short = 'k', long = "kind")]
+        kind: Kind,
+
         #[clap(help = "Input Message. If not, read STDIN")]
         message: Option<String>,
     },
@@ -55,24 +55,36 @@ enum Commands {
 
 fn main() {
     let arg: AppArg = AppArg::parse();
-    match arg.kind {
-        Kind::Shell => {
-            match arg.command {
-                Commands::Escape { message } => println!("{}", snailquote::escape(&get_message(&message))),
-                Commands::Unescape { message } => println!("{}", snailquote::unescape(&get_message(&message)).unwrap()),
+    match arg.command {
+        Commands::StrEscape { kind, message } => match kind {
+            Kind::Shell => {
+                println!("{}", snailquote::escape(&get_message(&message)));
+            }
+            Kind::Json => {
+                println!("{}", escape8259::escape(&get_message(&message)));
+            }
+            Kind::Http => {
+                println!(
+                    "{}",
+                    percent_encode(get_message(&message).as_bytes(), NON_ALPHANUMERIC)
+                );
             }
         },
-        Kind::Json => {
-            match arg.command {
-                Commands::Escape { message } => println!("{}", escape8259::escape(&get_message(&message))),
-                Commands::Unescape { message } => println!("{}", escape8259::unescape(&get_message(&message)).unwrap()),
+        Commands::StrUnescape { kind, message } => match kind {
+            Kind::Shell => {
+                println!("{}", snailquote::unescape(&get_message(&message)).unwrap());
             }
-        }
-        Kind::HTTP => {
-            match arg.command {
-                Commands::Escape { message } => println!("{}", percent_encode(&get_message(&message).as_bytes(), NON_ALPHANUMERIC).to_string()),
-                Commands::Unescape { message } => println!("{}", percent_decode(&get_message(&message).as_bytes()).decode_utf8().unwrap()),
+            Kind::Json => {
+                println!("{}", escape8259::unescape(&get_message(&message)).unwrap());
             }
-        }
+            Kind::Http => {
+                println!(
+                    "{}",
+                    percent_decode(get_message(&message).as_bytes())
+                        .decode_utf8()
+                        .unwrap()
+                );
+            }
+        },
     }
 }
